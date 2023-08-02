@@ -1,40 +1,45 @@
-# bloglist
+# full-stack-open-bloglist
+
+Bloglist app created as part of the [Full Stack Open](https://fullstackopen.com/en/) course
 
 ## Dev
 
 Install dependencies
 
-```bash
-cd full-stack-open-bloglist/
-npm install
-cd frontend/
-npm install
+```shell
+cd full-stack-open-bloglist
+npm install && cd frontend && npm install
+```
+
+Create an `.env` file based on `.env.example`
+
+```shell
+### .env
+MONGODB_URI=mongodb+srv://<username>:<password>@<clustername>.4pwonvk.mongodb.net/<collection>?retryWrites=true&w=majority
+TEST_MONGODB_URI=mongodb+srv://<username>:<password>@<clustername>.4pwonvk.mongodb.net/<collection>?retryWrites=true&w=majority
+PORT=3001
+SECRET=secretString
 ```
 
 Start backend
 
-```bash
-cd full-stack-open-bloglist/
+```shell
+cd full-stack-open-bloglist
 npm run start
 ```
 
 Run another terminal and start frontend
 
-```bash
-cd full-stack-open-bloglist/frontend/
+```shell
+cd full-stack-open-bloglist/frontend
 npm run start
 ```
 
 View the application at http://localhost:3000/.
 
-### user for testing:
+### Credentials for testing
 
-username: testuser
-
-password: helloworld
-
-### extra user:
-
-username: seconduser
-
-password: goodbyeworld
+| Username   | Password     |
+| ---------- | ------------ |
+| testuser   | helloworld   |
+| seconduser | goodbyeworld |
