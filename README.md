@@ -25,6 +25,8 @@ cd full-stack-open-bloglist/frontend/
 npm run start
 ```
 
+View the application at http://localhost:3000/.
+
 ### user for testing:
 
 username: testuser
