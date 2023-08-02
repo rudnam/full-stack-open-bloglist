@@ -6,7 +6,7 @@ function Error() {
   return (
     <div>
       {errorMessage ? (
-        <div className="bg-gray-800 text-red-500 rounded-md p-2 border border-gray-600">
+        <div className="error-message bg-gray-800 text-red-500 rounded-md p-2 border border-gray-600">
           {errorMessage}
         </div>
       ) : null}

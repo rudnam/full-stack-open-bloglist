@@ -1,15 +1,6 @@
 import { Link } from "react-router-dom";
 
 const Menu = ({ user }) => {
-  const ulStyle = {
-    display: "flex",
-    alignItems: "center",
-    listStyleType: "none",
-    margin: 0,
-    padding: 0,
-    gap: "10px",
-  };
-
   return (
     <nav className="border-b border-gray-700 bg-gray-900 w-full sticky top-0">
       <div className="flex">

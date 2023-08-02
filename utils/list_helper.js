@@ -1,4 +1,4 @@
-const lodash = require('lodash');
+const lodash = require("lodash");
 
 const dummy = (blogs) => 1;
 
@@ -8,13 +8,14 @@ const totalLikes = (blogs) => {
 };
 
 const favoriteBlog = (blogs) => {
-  const reducer = (favorite, blog) => (favorite.likes > blog.likes ? favorite : blog);
+  const reducer = (favorite, blog) =>
+    favorite.likes > blog.likes ? favorite : blog;
   return blogs.length > 0 ? blogs.reduce(reducer) : null;
 };
 
 const mostBlogs = (blogs) => {
   if (blogs.length === 0) return null;
-  const blogsPerAuthor = lodash.countBy(blogs, 'author');
+  const blogsPerAuthor = lodash.countBy(blogs, "author");
   const reducer = (most, author) => (most[1] > author[1] ? most : author);
   const authorMost = Object.entries(blogsPerAuthor).reduce(reducer);
   return {

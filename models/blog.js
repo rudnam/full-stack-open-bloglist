@@ -1,18 +1,4 @@
-const mongoose = require('mongoose');
-const config = require('../utils/config');
-
-mongoose.set('strictQuery', false);
-
-const url = config.MONGODB_URI;
-// console.log('connecting to', url);
-mongoose
-  .connect(url)
-  .then((result) => {
-    // console.log('connected to MongoDB');
-  })
-  .catch((error) => {
-    console.log('error connecting to MongoDB:', error.message);
-  });
+const mongoose = require("mongoose");
 
 const blogSchema = new mongoose.Schema({
   title: String,
@@ -21,7 +7,7 @@ const blogSchema = new mongoose.Schema({
   likes: Number,
   user: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: "User",
   },
   comments: [
     {
@@ -30,7 +16,7 @@ const blogSchema = new mongoose.Schema({
   ],
 });
 
-blogSchema.set('toJSON', {
+blogSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
     delete returnedObject._id;
@@ -38,4 +24,4 @@ blogSchema.set('toJSON', {
   },
 });
 
-module.exports = mongoose.model('Blog', blogSchema);
+module.exports = mongoose.model("Blog", blogSchema);

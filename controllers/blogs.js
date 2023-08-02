@@ -1,23 +1,22 @@
-const blogsRouter = require('express').Router();
-const jwt = require('jsonwebtoken');
-const userExtractor = require('../utils/middleware').userExtractor;
-const Blog = require('../models/blog');
-const User = require('../models/user');
+const blogsRouter = require("express").Router();
+const jwt = require("jsonwebtoken");
+const userExtractor = require("../utils/middleware").userExtractor;
+const Blog = require("../models/blog");
 
-blogsRouter.get('/', async (request, response) => {
-  const blogs = await Blog.find({}).populate('user', { username: 1, name: 1 });
+blogsRouter.get("/", async (request, response) => {
+  const blogs = await Blog.find({}).populate("user", { username: 1, name: 1 });
   response.json(blogs);
 });
 
-blogsRouter.post('/', userExtractor, async (request, response) => {
+blogsRouter.post("/", userExtractor, async (request, response) => {
   if (!request.body.title || !request.body.url) {
-    response.status(400).json({ error: 'Title and URL are required' });
+    response.status(400).json({ error: "Title and URL are required" });
     return;
   }
 
   const decodedToken = jwt.verify(request.token, process.env.SECRET);
   if (!decodedToken.id) {
-    response.status(401).json({ error: 'token invalid' });
+    response.status(401).json({ error: "token invalid" });
     return;
   }
 
@@ -36,25 +35,25 @@ blogsRouter.post('/', userExtractor, async (request, response) => {
   response.status(201).json(savedBlog);
 });
 
-blogsRouter.delete('/:id', userExtractor, async (request, response) => {
+blogsRouter.delete("/:id", userExtractor, async (request, response) => {
   const decodedToken = jwt.verify(request.token, process.env.SECRET);
   if (!decodedToken.id) {
-    response.status(401).json({ error: 'token invalid' });
+    response.status(401).json({ error: "token invalid" });
     return;
   }
   const user = request.user;
   const blog = await Blog.findById(request.params.id);
   if (!user) {
-    response.status(400).json({ error: 'user missing' });
+    response.status(400).json({ error: "user missing" });
   } else if (!blog) {
-    response.status(400).json({ error: 'blog missing' });
+    response.status(400).json({ error: "blog missing" });
   } else if (
-    !user.id
-    || !blog.user
-    || user.id.toString() !== blog.user.toString()
+    !user.id ||
+    !blog.user ||
+    user.id.toString() !== blog.user.toString()
   ) {
     response.status(401).json({
-      error: 'Unauthorized deletion',
+      error: "Unauthorized deletion",
       user,
       blog,
     });
@@ -64,7 +63,7 @@ blogsRouter.delete('/:id', userExtractor, async (request, response) => {
   response.status(200).json(deletedBlog);
 });
 
-blogsRouter.put('/:id', async (request, response) => {
+blogsRouter.put("/:id", async (request, response) => {
   const blog = {
     likes: request.body.likes,
   };
@@ -74,9 +73,9 @@ blogsRouter.put('/:id', async (request, response) => {
   response.status(200).json(updatedBlog);
 });
 
-blogsRouter.post('/:id/comments', async (request, response) => {
+blogsRouter.post("/:id/comments", async (request, response) => {
   if (!request.body.comment) {
-    response.status(400).json({ error: 'Comment should not be empty' });
+    response.status(400).json({ error: "Comment should not be empty" });
     return;
   }
   const blog = await Blog.findById(request.params.id);

@@ -1,16 +1,16 @@
-const listHelper = require('../utils/list_helper');
+const listHelper = require("../utils/list_helper");
 
-describe('Total likes', () => {
-  test('of empty list is zero', () => {
+describe("Total likes", () => {
+  test("of empty list is zero", () => {
     expect(listHelper.totalLikes([])).toBe(0);
   });
 
-  test('when list has only one blog equals likes of that', () => {
+  test("when list has only one blog equals likes of that", () => {
     const arrayWithOneBlog = [
       {
-        title: 'testTitle',
-        author: 'testAuthor',
-        url: 'test.url',
+        title: "testTitle",
+        author: "testAuthor",
+        url: "test.url",
         likes: 12,
       },
     ];
@@ -18,24 +18,24 @@ describe('Total likes', () => {
     expect(result).toBe(12);
   });
 
-  test('of a bigger list is calculated right', () => {
+  test("of a bigger list is calculated right", () => {
     const arrayWithManyBlogs = [
       {
-        title: 'testTitle1',
-        author: 'testAuthor1',
-        url: 'test1.url',
+        title: "testTitle1",
+        author: "testAuthor1",
+        url: "test1.url",
         likes: 1,
       },
       {
-        title: 'testTitle2',
-        author: 'testAuthor2',
-        url: 'test2.url',
+        title: "testTitle2",
+        author: "testAuthor2",
+        url: "test2.url",
         likes: 2,
       },
       {
-        title: 'testTitle3',
-        author: 'testAuthor3',
-        url: 'test3.url',
+        title: "testTitle3",
+        author: "testAuthor3",
+        url: "test3.url",
         likes: 5,
       },
     ];

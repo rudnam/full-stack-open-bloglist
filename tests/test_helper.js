@@ -1,42 +1,42 @@
-const Blog = require('../models/blog');
-const User = require('../models/user');
+const Blog = require("../models/blog");
+const User = require("../models/user");
 
 const initialBlogs = [
   {
-    title: 'Superuser\'s blog #1',
-    author: 'Superuser',
-    url: 'superuser.com/test',
+    title: "Superuser's blog #1",
+    author: "Superuser",
+    url: "superuser.com/test",
     likes: 12,
   },
   {
-    title: 'Superuser\'s blog #2',
-    author: 'Superuser',
-    url: 'superuser.com/test2',
+    title: "Superuser's blog #2",
+    author: "Superuser",
+    url: "superuser.com/test2",
     likes: 9,
   },
   {
-    title: 'RandomGuy\'s cool blog',
-    author: 'RandomGuy',
-    url: 'randomguy.com/blog',
+    title: "RandomGuy's cool blog",
+    author: "RandomGuy",
+    url: "randomguy.com/blog",
     likes: 1,
   },
 ];
 
 const initialUsers = [
   {
-    username: 'root',
-    name: 'Superuser',
-    password: 'notASafePassword',
+    username: "root",
+    name: "Superuser",
+    password: "notASafePassword",
   },
   {
-    username: 'user1',
-    name: 'RandomGuy',
-    password: 'RandomPassword',
+    username: "user1",
+    name: "RandomGuy",
+    password: "RandomPassword",
   },
 ];
 
 const nonExistingId = async () => {
-  const blog = new Blog({ content: 'willremovethissoon' });
+  const blog = new Blog({ content: "willremovethissoon" });
   await blog.save();
   await blog.deleteOne();
 
@@ -54,5 +54,9 @@ const usersInDb = async () => {
 };
 
 module.exports = {
-  initialBlogs, initialUsers, nonExistingId, blogsInDb, usersInDb,
+  initialBlogs,
+  initialUsers,
+  nonExistingId,
+  blogsInDb,
+  usersInDb,
 };
