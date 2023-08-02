@@ -15,9 +15,9 @@
   },
   "scripts": {
     "start": "DISABLE_ESLINT_PLUGIN=true react-scripts start",
-    "build": "react-scripts build",
-    "test": "CI=true react-scripts test",
-    "eject": "react-scripts eject",
+    "build": "DISABLE_ESLINT_PLUGIN=true react-scripts build",
+    "test": "DISABLE_ESLINT_PLUGIN=true CI=true react-scripts test",
+    "eject": "DISABLE_ESLINT_PLUGIN=true react-scripts eject",
     "cypress:open": "cypress open"
   },
   "browserslist": {
