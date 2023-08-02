@@ -5,6 +5,7 @@
 Install dependencies
 
 ```bash
+cd full-stack-open-bloglist/
 npm install
 cd frontend/
 npm install
