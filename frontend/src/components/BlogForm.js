@@ -18,7 +18,7 @@ const BlogForm = () => {
         title,
         author,
         url,
-      })
+      }),
     )
       .then(() => {
         dispatch(setNotification(`${title} by ${author} added`, 3));

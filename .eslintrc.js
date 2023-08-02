@@ -1,9 +1,20 @@
 module.exports = {
+  globals: {
+    cy: true,
+  },
   env: {
     browser: true,
+    node: true,
     es2021: true,
+    amd: true,
+    jest: true,
   },
-  extends: ["eslint:recommended", "plugin:react/recommended", "prettier"],
+  extends: [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:cypress/recommended",
+    "prettier",
+  ],
   overrides: [
     {
       env: {
@@ -19,6 +30,10 @@ module.exports = {
     ecmaVersion: "latest",
     sourceType: "module",
   },
-  plugins: ["react"],
-  rules: {},
+  plugins: ["react", "cypress"],
+  rules: {
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "no-unused-vars": "off",
+  },
 };

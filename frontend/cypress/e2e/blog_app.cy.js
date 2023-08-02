@@ -1,25 +1,25 @@
 /* eslint-disable prefer-arrow-callback */
 describe("Blog app", function () {
   beforeEach(function () {
-    cy.request("POST", "http://localhost:3003/api/testing/reset");
+    cy.request("POST", "http://localhost:3001/api/testing/reset");
     const user = {
       name: "Matti Luukkainen",
       username: "mluukkai",
       password: "salainen",
     };
-    cy.request("POST", "http://localhost:3003/api/users/", user);
+    cy.request("POST", "http://localhost:3001/api/users/", user);
     const user2 = {
       name: "Random user",
       username: "random",
       password: "helloworld",
     };
-    cy.request("POST", "http://localhost:3003/api/users/", user2);
+    cy.request("POST", "http://localhost:3001/api/users/", user2);
 
-    cy.visit("http://localhost:3000");
+    cy.visit("http://localhost:3001");
   });
 
   it("Login form is shown", function () {
-    cy.visit("http://localhost:3000");
+    cy.visit("http://localhost:3001");
     cy.contains("log in to application");
     cy.contains("username");
   });
@@ -81,7 +81,7 @@ describe("Blog app", function () {
         cy.contains("remove").click();
         cy.get("html").should(
           "not.contain",
-          "The best blog in the world Random person",
+          "The best blog in the world Random person"
         );
       });
 
