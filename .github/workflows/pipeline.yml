@@ -25,18 +25,16 @@ jobs:
         run: npm run lint
       - name: Formatting
         run: npm run format
+      - name: Build
+        run: npm run build:ui
       - name: Run Jest tests
         run: npm run test
       - name: Run Cypress E2E tests
         uses: cypress-io/github-action@v5
         with:
           command: npm run test:e2e
-          start: |
-            npm run start:test
-            npm run start-frontend
+          start: npm run start:test
           wait-on: http://localhost:3001
-      - name: Build
-        run: npm run build:ui
   CD:
     needs: [CI]
     if: ${{ github.event.name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip') }}
