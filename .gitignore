@@ -1,3 +1,4 @@
 node_modules
 .env
 frontend/cypress/videos
+frontend/cypress/screenshots
