@@ -42,7 +42,7 @@ beforeEach(async () => {
     user.blogs = user.blogs.concat(savedBlog.id);
     await user.save();
   }
-}, 15 * 1000);
+});
 
 describe("when there is initially some blogs saved", () => {
   test("correct amount of blogs are returned as json", async () => {
