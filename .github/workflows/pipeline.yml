@@ -37,7 +37,7 @@ jobs:
           wait-on: http://localhost:3001
   CD:
     runs-on: ubuntu-22.04
-    if: ${{ github.event.name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip') }}
+    if: ${{ github.event.pull_request.merged == true && !contains(toJson(github.event.commits.*.message), '#skip') }}
     needs: [CI]
     steps:
       - uses: actions/checkout@v3
