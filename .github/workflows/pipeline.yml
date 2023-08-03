@@ -18,7 +18,7 @@ jobs:
           node-version: "20"
       - name: Create env file
         run: |
-          echo '${{ secrets.ENV_FILE }}' > .env
+          echo "${{ secrets.ENV_FILE }}" > .env
       - name: Install dependencies
         run: npm install && cd frontend && npm install
       - name: Linting
