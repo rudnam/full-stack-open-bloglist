@@ -18,7 +18,7 @@ jobs:
           node-version: "20"
       - name: Create env file
         run: |
-          echo "${{ secrets.ENV_FILE }}" > .env
+          echo '${{ secrets.ENV_FILE }}' > .env
       - name: Install dependencies
         run: npm install && cd frontend && npm install
       - name: Linting
@@ -36,9 +36,9 @@ jobs:
           start: npm run start:test
           wait-on: http://localhost:3001
   CD:
-    needs: [CI]
-    if: ${{ github.event.name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip') }}
     runs-on: ubuntu-22.04
+    if: ${{ github.event.name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip') }}
+    needs: [CI]
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
@@ -54,13 +54,13 @@ jobs:
           service-id: ${{ secrets.RENDER_SERVICE_ID }}
           api-key: ${{ secrets.RENDER_API_KEY }}
   Versioning:
-    needs: [CI, CD]
+    runs-on: ubuntu-22.04
     if: |
       always() &&
-      !contains(needs.*.result, "cancelled") &&
-      !contains(needs.*.result, "failure") &&
+      !contains(needs.*.result, 'cancelled') &&
+      !contains(needs.*.result, 'failure') &&
       github.event.pull_request.merged == true
-    runs-on: ubuntu-22.04
+    needs: [CI, CD]
     permissions:
       contents: write
     steps:
@@ -68,7 +68,6 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.merge_commit_sha }}
           fetch-depth: "0"
-
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@1.67.0
         env:
