@@ -14,11 +14,11 @@ describe("Blog app", function () {
     };
     cy.request("POST", "http://localhost:3001/api/users/", user2);
 
-    cy.visit("http://localhost:3000");
+    cy.visit("http://localhost:3001");
   });
 
   it("Login form is shown", function () {
-    cy.visit("http://localhost:3000");
+    cy.visit("http://localhost:3001");
     cy.contains("Log in to application");
     cy.contains("username");
   });
