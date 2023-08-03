@@ -9,7 +9,7 @@ on:
     types: [opened, synchronize]
 
 jobs:
-  cicd_pipeline:
+  CI:
     runs-on: ubuntu-22.04
     steps:
       - uses: actions/checkout@v3
@@ -37,8 +37,18 @@ jobs:
           wait-on: http://localhost:3001
       - name: Build
         run: npm run build:ui
+  CD:
+    needs: [CI]
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: "20"
+      - name: Build
+        run: npm run build:ui
       - name: Deploy to Render
-        if: ${{ github.event.name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip') }}
+        # if: ${{ github.event.name == 'push' && !contains(toJson(github.event.commits.*.message), '#skip') }}
         uses: johnbeynon/render-deploy-action@v0.0.8
         with:
           service-id: ${{ secrets.RENDER_SERVICE_ID }}
