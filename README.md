@@ -43,5 +43,3 @@ View the application at http://localhost:3000/.
 | ---------- | ------------ |
 | testuser   | helloworld   |
 | seconduser | goodbyeworld |
-
-test
